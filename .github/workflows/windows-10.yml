@@ -10,14 +10,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Cache Gradle packages
-      uses: actions/cache@v3
-      with:
-        path: ~/win10.iso
-        key: win10-sio
-        restore-keys: win10-iso
-
     - name: Install QEMU
       run: |
         sudo apt-get update
