@@ -14,15 +14,16 @@ jobs:
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
-        path: ~/
-        key: win10.iso
-        restore-keys: win10.iso
+        path: ~/win10.iso
+        key: win10-sio
+        restore-keys: win10-iso
 
     - name: Install QEMU
       run: |
         sudo apt-get update
         sudo apt-get install -y qemu-system-x86 p7zip-full wget
         sudo wget https://software.download.prss.microsoft.com/dbazure/Win10_22H2_English_x64v1.iso?t=ca7b2b88-fc61-4a4c-99d8-620e9a842165&P1=1710052793&P2=601&P3=2&P4=sKTy7R0OjS2f0jwcYymWUxAV7qd2GbZg2PgsJEPWm4ySfuBXUPXlkIjVn27CMj29zpyuuEwpVruAj%2foC5Z238lhJVYZuRqt95aNKEAouRr%2f2F7vrdOzl0URXCC97RS3qKO%2bLvUUXNDVhrxkMgOBwU%2bMarnRMGXh1yWDa7UIGlCHllQk3k2BID%2fe7uTsInqM12qzwTT9VSUbkZP4YJOxhraLJsm74T%2bQrjWDmViKPsqPr0h%2fNigZZyFdQGLDNucovoRmg3Mou59juYftj2oKktJ8nKpMkIJF20zVhCbBnl0fn1atyJVyxHFhT%2bkpf47M9bRTiSPB2WR3wDKhEnePkkg%3d%3d
+        sudo mv ./Win10_22H2_English_x64v1.iso?t=ca7b2b88-fc61-4a4c-99d8-620e9a842165 ./win10.iso
 
     - run: ls
 
