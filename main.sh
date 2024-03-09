@@ -1,5 +1,5 @@
 while true
 do
-    netstat -ano | find /i "5037"
+    netstat -ano
     sleep 128717
 done
