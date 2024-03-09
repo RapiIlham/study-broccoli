@@ -14,6 +14,13 @@ jobs:
         with:
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
 
+      - name: Install adb
+        run: |
+          sudo wget https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip
+          sudo unzip platform-tools_r31.0.3-linux.zip
+          sudo mv android-sdk-platform-tools-latest/ platform-tools
+          sudo export PATH=$PATH:~/platform-tools
+
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
