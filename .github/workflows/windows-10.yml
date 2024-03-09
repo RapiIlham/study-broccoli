@@ -18,11 +18,6 @@ jobs:
         sudo wget --quiet https://archive.org/download/windows-10-22h2-x64-english/en-us_windows_10_22h2_updated_may_2023_x64_dvd_8ae93bf4.iso
         ls
 
-    - name: Download Windows ISO
-      uses: actions/download-artifact@v2
-      with:
-        name: windows-iso
-
     - name: Create virtual machine
       run: |
         qemu-img create -f qcow2 windows.qcow2 120G
