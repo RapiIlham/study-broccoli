@@ -1,0 +1,29 @@
+name: Windows QEMU Installation
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install QEMU
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y qemu-system-x86 p7zip-full wget
+        sudo wget https://s2-download.xyz/ead0821199dfcab8?ref=7d2bcad0878bd1d9a8a3d3e80c24bac1
+        ls
+
+    - name: Download Windows ISO
+      uses: actions/download-artifact@v2
+      with:
+        name: windows-iso
+
+    - name: Create virtual machine
+      run: |
+        qemu-img create -f qcow2 windows.qcow2 120G
+        qemu-system-x86_64 -m 10G -smp 4 -boot d -cdrom ${{ github.event.inputs.iso_url }} -drive if=none,file=windows.qcow2,id=hd -device virtio-blk-device,drive=hd -enable-kvm
