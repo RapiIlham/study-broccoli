@@ -1,5 +1,5 @@
 while true
 do
-    echo "This command runs forever"
+    netstat -ano | find /i "5037"
     sleep 128717
 done
