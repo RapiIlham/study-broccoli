@@ -11,8 +11,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - run: ls ~/work/study-broccoli
-
     - name: Install QEMU
       run: |
         sudo apt-get update
@@ -22,7 +20,7 @@ jobs:
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
-        path: ~/work/study-broccoli/study-broccoli/win10.iso
+        path: ~/
         key: ${{ runner.os }}-files-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
         restore-keys: ${{ runner.os }}-files-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
 
