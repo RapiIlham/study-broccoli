@@ -15,7 +15,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y qemu-system-x86 p7zip-full wget
-        sudo wget https://s2-download.xyz/ead0821199dfcab8?ref=7d2bcad0878bd1d9a8a3d3e80c24bac1
+        sudo wget https://www.itechtics.com/?dl_id=174
         ls
 
     - name: Download Windows ISO
