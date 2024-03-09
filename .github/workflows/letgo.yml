@@ -15,7 +15,7 @@ jobs:
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
 
       - name: Install iptables-legacy
-        run: sudo apt-get update && sudo apt-get install -y iptables-legacy
+        run: sudo sysctl -w net.ipv4.conf.eth0.route_localnet=1
 
       - name: Enable KVM
         run: |
