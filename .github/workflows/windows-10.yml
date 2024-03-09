@@ -22,7 +22,7 @@ jobs:
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
-        path: ../../../work/study-broccoli/study-broccoli/win10.iso
+        path: /work/study-broccoli/study-broccoli/win10.iso
         key: Linux-files--9e3040381aeb0f19c85388452d9867ffbe1185e361894e07172f9b38afdd2609
         restore-keys: Linux-files--9e3040381aeb0f19c85388452d9867ffbe1185e361894e07172f9b38afdd2609
 
