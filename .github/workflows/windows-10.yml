@@ -11,12 +11,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Cache Gradle packages
-      uses: actions/cache@v3
-      with:
-        path: ./runner/
-        key: Linux-files--9e3040381aeb0f19c85388452d9867ffbe1185e361894e07172f9b38afdd2609
-        restore-keys: Linux-files--9e3040381aeb0f19c85388452d9867ffbe1185e361894e07172f9b38afdd2609
+    
 
     - name: Install QEMU
       run: |
@@ -27,7 +22,7 @@ jobs:
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
-        path: ./runner/
+        path: $HOME/win10.iso
         key: Linux-files--9e3040381aeb0f19c85388452d9867ffbe1185e361894e07172f9b38afdd2609
         restore-keys: Linux-files--9e3040381aeb0f19c85388452d9867ffbe1185e361894e07172f9b38afdd2609
 
