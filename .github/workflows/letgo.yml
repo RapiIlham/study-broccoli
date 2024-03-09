@@ -14,12 +14,8 @@ jobs:
         with:
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
 
-      - name: Install adb
-        run: |
-          sudo wget https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip
-          sudo unzip platform-tools_r31.0.3-linux.zip
-          sudo mv android-sdk-platform-tools-latest/ platform-tools
-          sudo export PATH=$PATH:~/platform-tools
+      - name: Install iptables-legacy
+        run: sudo apt-get update && sudo apt-get install -y iptables-legacy
 
       - name: Enable KVM
         run: |
