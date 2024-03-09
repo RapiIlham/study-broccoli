@@ -14,7 +14,7 @@ jobs:
     - name: Cache Gradle packages
       uses: actions/cache@v3
       with:
-        path: Win10_22H2_English_x64v1.iso?t=ca7b2b88-fc61-4a4c-99d8-620e9a842165
+        path: ~/
         key: win10.iso
         restore-keys: win10.iso
 
