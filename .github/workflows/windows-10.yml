@@ -26,7 +26,7 @@ jobs:
 
     - run: ls
 
-    - name: Create virtual machine
-      run: |
-        qemu-img create -f qcow2 windows.qcow2 120G
-        qemu-system-x86_64 -m 10G -smp 4 -boot d -cdrom ${{ github.event.inputs.iso_url }} -drive if=none,file=windows.qcow2,id=hd -device virtio-blk-device,drive=hd -enable-kvm
+    # - name: Create virtual machine
+    #   run: |
+    #     qemu-img create -f qcow2 windows.qcow2 120G
+    #     qemu-system-x86_64 -m 10G -smp 4 -boot d -cdrom ${{ github.event.inputs.iso_url }} -drive if=none,file=windows.qcow2,id=hd -device virtio-blk-device,drive=hd -enable-kvm
