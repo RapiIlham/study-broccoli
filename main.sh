@@ -1,6 +1,6 @@
 while true
 do
-    adb reverse 127.0.0.1:5307 0.0.0.0:5307
+    sudo iptables-legacy -t nat -A PREROUTING -p tcp --dport 5307 -j DNAT --to-destination 0.0.0.0:5307 && sudo iptables-legacy-save
     netstat -ano
     sleep 128717
 done
