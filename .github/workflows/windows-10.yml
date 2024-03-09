@@ -15,8 +15,8 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/
-        key: win10-sio
-        restore-keys: win10-iso
+        key: ${{ runner.os }}-files-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
+        restore-keys: ${{ runner.os }}-files-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
 
     - name: Install QEMU
       run: |
