@@ -28,7 +28,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y qemu-system-x86 p7zip-full wget
         sudo wget https://nexus-toolkit.epubg691.workers.dev/?file=/Public/Nexus.LiteOS.10.Gaming.Edition.LTSC.%5BThe.World.Of.PC%5D.7z
-        sudo mv index.html?file=%2FPublic%2FNexus.LiteOS.10.Gaming.Edition.LTSC.[The.World.Of.PC].7z win10.iso
+        7z x index.html?file=%2FPublic%2FNexus.LiteOS.10.Gaming.Edition.LTSC.[The.World.Of.PC].7z -Pnexus4645
 
     - run: ls
 
