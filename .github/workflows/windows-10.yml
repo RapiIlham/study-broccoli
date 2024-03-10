@@ -26,16 +26,9 @@ jobs:
     - name: Install QEMU
       run: |
         sudo apt-get update
-        sudo apt-get install -y qemu-system-x86 p7zip-full wget
-        sudo wget https://nexus-toolkit.epubg691.workers.dev/?file=/Public/Nexus.LiteOS.10.Gaming.Edition.LTSC.%5BThe.World.Of.PC%5D.7z
-        7z x index.html?file=%2FPublic%2FNexus.LiteOS.10.Gaming.Edition.LTSC.[The.World.Of.PC].7z -Pnexus4645
-        mv Nexus.LiteOS.10.Gaming.Edition.LTSC.iso win10.iso
-        unlink index.html?file=%2FPublic%2FNexus.LiteOS.10.Gaming.Edition.LTSC.[The.World.Of.PC].7z
-        unlink rufus-4.2p.exe
+        sudo apt-get install -y qemu-system-x86 p7zip-full
 
-    - run: ls
-
-    # - name: Create virtual machine
-    #   run: |
-    #     qemu-img create -f qcow2 windows.qcow2 120G
-    #     sudo qemu-system-x86_64 -m 10G -smp 4 -cdrom win10.iso -hda windows.qcow2 -enable-kvm -vnc 0.0.0.0:2
+    - name: Create virtual machine
+      run: |
+        qemu-img create -f qcow2 windows.qcow2 100G
+        sudo timeout --foreground 5400 "qemu-system-x86_64 -m 10G -smp 4 -cdrom win10.iso -hda windows.qcow2 -enable-kvm -vnc 0.0.0.0:2"
