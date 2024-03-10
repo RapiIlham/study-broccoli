@@ -31,4 +31,4 @@ jobs:
     - name: Create virtual machine
       run: |
         qemu-img create -f qcow2 windows.qcow2 100G
-        sudo timeout --foreground 5400 "qemu-system-x86_64 -m 10G -smp 4 -cdrom win10.iso -hda windows.qcow2 -enable-kvm -vnc 0.0.0.0:2"
+        sudo timeout --foreground 5400 qemu-system-x86_64 -m 10G -smp 4 -cdrom win10.iso -hda windows.qcow2 -enable-kvm -vnc 0.0.0.0:2
