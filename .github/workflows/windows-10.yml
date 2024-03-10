@@ -33,4 +33,4 @@ jobs:
     - name: Create virtual machine
       run: |
         qemu-img create -f qcow2 windows.qcow2 120G
-        sudo qemu-system-x86_64 -m 10G -smp 4 -cdrom win10.iso -hda windows.qcow2 -device virtio-blk-device,drive=hd -enable-kvm -vnc 0.0.0.0:2
+        sudo qemu-system-x86_64 -m 10G -smp 4 -cdrom win10.iso -hda windows.qcow2 -enable-kvm -vnc 0.0.0.0:2
