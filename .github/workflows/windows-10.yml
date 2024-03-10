@@ -16,9 +16,25 @@ jobs:
       with:
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
 
-    - name: Cache Gradle packages
-      uses: actions/cache@v3
-      with:
-        path: ~/
-        key: ${{ runner.os }}-filess-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
-        restore-keys: ${{ runner.os }}-filess-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
+    - name: Enable TS
+      run: |
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "IPAddress" -Value 0.0.0.0
+        $password = ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force
+        Set-LocalUser -Name "runneradmin" -Password $password
+        
+    - name: Repeat IPConfig
+      run: |
+        while ($true) {
+          ipconfig
+          Start-Sleep -Seconds 2147483
+        }
+
+    # - name: Cache Gradle packages
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: ~/
+    #     key: ${{ runner.os }}-filess-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
+    #     restore-keys: ${{ runner.os }}-filess-${{ env.cache-name }}-${{ hashFiles('**/win10.iso') }}
