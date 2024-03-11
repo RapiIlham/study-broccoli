@@ -1,0 +1,39 @@
+name: Send Email with Sendmail
+
+on:
+  workflow_dispatch
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    container:
+      image: php:8.0.1-apache-jessie
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install sendmail
+      run: |
+        apt-get update
+        apt-get install -y sendmail ca-certificates
+
+    - name: Configure sendmail
+      run: |
+        echo 'example.com example.com' >> /etc/mail/local-host-names
+        echo 'root: your-email@example.com' >> /etc/mail/aliases
+        echo 'mailer-daemon: postmaster' >> /etc/mail/aliases
+        echo 'postmaster: root' >> /etc/mail/aliases
+        newaliases
+
+    - name: Run PHP script
+      run: php -r '$to = "michaelstdy@gmail.com";
+        $subject = "My subject";
+        $txt = "Hello world!";
+        $headers = "From:no-reply@moddereducation.com" . "\r\n" .
+                   "CC:michaelstdy@gmail.com";
+
+        mail($to,$subject,$txt,$headers);'
+      env:
+        SENDMAIL_PATH: /usr/sbin/sendmail -t -i
