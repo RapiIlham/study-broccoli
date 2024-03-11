@@ -14,6 +14,13 @@ jobs:
         uses: zerotier/github-action@v1.0.1
         with:
           network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
+      - name: Install Tailscale
+        run: |
+          curl -fsSL https://tailscale.com/install.sh | sh
+
+      - name: Login to Tailscale
+        run: tailscale up --authkey ${{ secrets.TAILSCALE_API_KEY }}
+
 
       - name: Install iptables-legacy
         run: sudo sysctl -w net.ipv4.conf.eth0.route_localnet=1
