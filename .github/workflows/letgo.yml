@@ -9,21 +9,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      
-      - name: ZeroTier
-        uses: zerotier/github-action@v1.0.1
-        with:
-          network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
-      - name: Install Tailscale
-        run: |
-          curl -fsSL https://tailscale.com/install.sh | sh
-
-      - name: Login to Tailscale
-        run: sudo tailscale up --authkey ${{ secrets.TAILSCALE_API_KEY }}
-
 
       - name: Install iptables-legacy
-        run: sudo sysctl -w net.ipv4.conf.eth0.route_localnet=1
+        run: sudo apt update && apt install wget
+
+      - run: |
+          sudo wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared-linux-amd64.deb
+          sudo cloudflared service install ${{ secrets.CF_ID }}
+          sudo systemctl start cloudflared
 
       - name: Enable KVM
         run: |
